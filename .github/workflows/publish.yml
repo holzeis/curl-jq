@@ -1,12 +1,12 @@
 name: Publish
 
+
 on:
-  workflow_dispatch:
-    inputs:
-      version:
-        description: 'The version used to tag the images'     
-        required: true
-        default: 'latest'
+  push:
+    branches:
+      - main
+    tags:
+      - 'v*.*.*'
 
 env:
   REGISTRY: ghcr.io
@@ -22,7 +22,7 @@ jobs:
         run: |
           DOCKER_IMAGE=ghcr.io/holzeis/curl-jq
           DOCKER_PLATFORMS=linux/amd64,linux/arm/v6,linux/arm/v7,linux/arm64
-          VERSION=${{ github.event.inputs.version }}
+          VERSION=latest
           TAGS="--tag ${DOCKER_IMAGE}:${VERSION}"
           echo ::set-output name=docker_image::${DOCKER_IMAGE}
           echo ::set-output name=version::${VERSION}
