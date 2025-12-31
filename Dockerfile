@@ -1,4 +1,4 @@
-FROM alpine:3.14
+FROM alpine:latest
 
 LABEL org.opencontainers.image.authors="richard@holzeis.me"
 LABEL org.opencontainers.image.source="https://github.com/holzeis/curl-jq"
